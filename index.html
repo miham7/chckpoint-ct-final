@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz cu 3 întrebări</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .quiz-container {
+      background: white;
+      padding: 30px 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .question, .intro, .success-message {
+      display: none;
+      margin-bottom: 20px;
+    }
+
+    .active {
+      display: block;
+    }
+
+    h1, h2 {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+      width: 100%;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .success-message {
+      font-size: 1.5em;
+      color: green;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div id="intro" class="intro active">
+      <h1>Bine ai venit la checkpointul final!</h1>
+      <p> Ultimele întrebări pe ziua de azi :D <br>
+        A fost o călătorie interesantă, dar hai să mai aflăm câteva informații</p>
+      <button onclick="startQuiz()">Start</button>
+    </div>
+    <div id="q1" class="question">
+      <h2>1. Ce reprezintă plăcuța de Quality Label?</h2>
+      <button onclick="checkAnswer(1, 'a')">a) Plăcuța de Quality Label este o acreditare acordată de Uniunea Europeană 
+        organizațiilor care se implică în proiecte de voluntariat sau solidaritate și care respectă valorile și standardele 
+        Corpului European de Solidaritate</button>
+      <button onclick="checkAnswer(1, 'b')">b) Plăcuța de Quality Label este un premiu acordat anual celei mai active 
+        organizații de voluntariat din fiecare țară</button>
+      <button onclick="checkAnswer(1, 'c')">c) Quality Label-ul este un certificat care le permite tinerilor să călătorească 
+        gratuit în Uniunea Europeană</button>
+    </div>
+
+    <div id="q2" class="question">
+      <h2>2. Unde este cel mai apropiat punct de informare Eurodesk?</h2>
+      <button onclick="checkAnswer(2, 'a')">a) Cluj Napoca</button>
+      <button onclick="checkAnswer(2, 'b')">b) Timișoara</button>
+      <button onclick="checkAnswer(2, 'c')">c) București</button>
+    </div>
+
+    <div id="q3" class="question">
+      <h2>3. Cum te poți înscrie într-un proiect de voluntariat prin Corpul European de Solidaritate?</h2>
+      <button onclick="checkAnswer(3, 'a')">a) Mergând direct la ambasada țării gazdă</button>
+      <button onclick="checkAnswer(3, 'b')">b) Creând un profil pe platforma Corpului European de Solidaritate și aplicând la proiecte disponibile</button>
+      <button onclick="checkAnswer(3, 'c')">c) Doar dacă ești deja angajat într-o organizație</button>
+    </div>
+
+    <div id="success" class="success-message">
+      <h1>🎉 Felicitări! Aproape ai terminat treasure huntul! </h1><br>
+    <p>Dacă tot am menționat Qulaity Labelul, găsiți plăcuța și trimiteți un selfie cu ea! :P</p><br>
+      <h5>Cine trimite primul câștigă, apropo, deci succes!</h5>
+    </div>
+  </div>
+
+  <script>
+    function startQuiz() {
+      document.getElementById('intro').classList.remove('active');
+      document.getElementById('q1').classList.add('active');
+    }
+
+    function checkAnswer(q, answer) {
+      const correct = {1: 'a', 2: 'b', 3: 'b'};
+      if (answer === correct[q]) {
+        document.getElementById('q' + q).classList.remove('active');
+        if (q < 3) {
+          document.getElementById('q' + (q + 1)).classList.add('active');
+        } else {
+          document.getElementById('success').classList.add('active');
+        }
+      } else {
+        alert("Răspuns greșit! Încearcă din nou.");
+      }
+    }
+  </script>
+</body>
+</html>
